@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Chat App</title>
+  </head>
+  <body class="bg-neutral-900 overflow-x-hidden text-white">
+    <div class="mx-auto px-2 pb-44 max-w-3xl container" id="chat-container">
+      <!-- messages -->
+
+      <!-- user messages -->
+      <!-- <div class="bg-neutral-800 my-6 ml-auto p-3 rounded-xl max-w-fit">
+        Hi how are you?
+      </div> -->
+
+      <!-- AI messages -->
+      <!-- <div class="max-w-fit">Hello I'm fine. how are you?</div> -->
+
+      <!-- text area -->
+      <div
+        class="bottom-0 fixed inset-x-0 flex justify-center items-center bg-neutral-900 px-2"
+      >
+        <div class="bg-neutral-800 mb-3 p-2 rounded-3xl w-full max-w-3xl">
+          <textarea
+            id="input-text"
+            class="p-3 outline-none w-full resize-none"
+            rows="2"
+          ></textarea>
+          <div class="flex justify-end items-center">
+            <button
+              id="ask-btn"
+              class="bg-white hover:bg-gray-300 px-4 py-1 rounded-full text-black cursor-pointer"
+            >
+              Ask
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
