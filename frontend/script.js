@@ -2,13 +2,16 @@ const chatContainer = document.querySelector("#chat-container");
 const input = document.querySelector("#input-text");
 const askBtn = document.querySelector("#ask-btn");
 
+const threadId =
+  Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
+
 async function callServer(text) {
   const response = await fetch("http://localhost:3001/chat", {
     method: "POST",
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({ message: text }),
+    body: JSON.stringify({ message: text, threadId }),
   });
 
   if (!response.ok) {
@@ -29,13 +32,20 @@ async function generate(text) {
 
   input.value = "";
 
+  const loadingEle = document.createElement("div");
+  loadingEle.className = "my-6 animate-pulse";
+  loadingEle.textContent = "Thinking...";
+
   const assistantMsgEle = document.createElement("div");
   assistantMsgEle.className = "max-w-fit";
-  assistantMsgEle.textContent = "Thinking...";
   chatContainer.appendChild(assistantMsgEle);
+
+  chatContainer.appendChild(loadingEle);
 
   const assistantMsg = await callServer(text);
   assistantMsgEle.textContent = assistantMsg;
+
+  loadingEle.remove();
 
   chatContainer.appendChild(assistantMsgEle);
 }

@@ -19,9 +19,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/chat", async (req, res) => {
-  const { message } = req.body;
+  const { message, threadId } = req.body;
 
-  const result = await generate(message);
+  if (!message || !threadId) {
+    res.status(400).json({
+      message: "All fields are mandatory",
+    });
+    return;
+  }
+
+  const result = await generate(message, threadId);
 
   res.json({
     message: result,
